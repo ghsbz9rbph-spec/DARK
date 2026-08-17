@@ -13,7 +13,7 @@ const client = new Client({
 
 client.commands = new Collection();
 
-const commandsPath = path.join(__dirname, "commands");
+const commandsPath = __dirname;
 
 const commandFiles = fs
   .readdirSync(commandsPath)
@@ -30,28 +30,4 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
-client.once("ready", () => {
-  console.log(`✅ البوت اشتغل: ${client.user.tag}`);
-});
-
-client.on("interactionCreate", async interaction => {
-  if (!interaction.isChatInputCommand()) return;
-
-  const command = client.commands.get(interaction.commandName);
-
-  if (!command) return;
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-
-    if (interaction.replied || interaction.deferred) {
-      await interaction.followUp("❌ حدث خطأ.");
-    } else {
-      await interaction.reply("❌ حدث خطأ.");
-    }
-  }
-});
-
-client.login(process.env.TOKEN);
+module.exports = client;
