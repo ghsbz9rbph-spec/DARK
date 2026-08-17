@@ -1,4 +1,4 @@
-const {
+  const {
   Client,
   GatewayIntentBits,
   Collection
@@ -13,10 +13,11 @@ const client = new Client({
 
 client.commands = new Collection();
 
-const commandsPath = path.join(__dirname, "commands");
+const commandsPath = __dirname;
+
 const commandFiles = fs
   .readdirSync(commandsPath)
-  .filter(file => file.endsWith(".js"));
+  .filter(file => file.endsWith(".js") && file !== "index.js");
 
 for (const file of commandFiles) {
   const command = require(path.join(commandsPath, file));
