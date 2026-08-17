@@ -1,4 +1,4 @@
-  const {
+const {
   Client,
   GatewayIntentBits,
   Collection
@@ -21,6 +21,12 @@ const commandFiles = fs
 
 for (const file of commandFiles) {
   const command = require(path.join(commandsPath, file));
+
+  if (!command.data || !command.execute) {
+    console.log(`⚠️ تم تجاهل الملف: ${file}`);
+    continue;
+  }
+
   client.commands.set(command.data.name, command);
 }
 
