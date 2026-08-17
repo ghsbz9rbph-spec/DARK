@@ -1,0 +1,24 @@
+{
+  "players": {},
+  "recipes": {
+    "lockpick": {
+      "name": "🔧 Lockpick",
+      "time": 30,
+      "cost": {
+        "iron": 3,
+        "plastic": 1
+      },
+      "result": 1
+    },
+    "radio": {
+      "name": "📻 راديو",
+      "time": 60,
+      "cost": {
+        "iron": 5,
+        "plastic": 3,
+        "aluminum": 2
+      },
+      "result": 1
+    }
+  }
+}
