@@ -13,7 +13,7 @@ const client = new Client({
 
 client.commands = new Collection();
 
-const commandsPath = __dirname;
+const commandsPath = path.join(__dirname, "commands");
 
 const commandFiles = fs
   .readdirSync(commandsPath)
@@ -22,7 +22,7 @@ const commandFiles = fs
 for (const file of commandFiles) {
   const command = require(path.join(commandsPath, file));
 
-  if (!command.data || !command.execute) {
+  if (!command.data || !command.execute || !command.data.name) {
     console.log(`⚠️ تم تجاهل الملف: ${file}`);
     continue;
   }
